@@ -1,0 +1,3 @@
+[build]
+  # 指定你真正要发布的子目录
+  publish = "bb.coinmint.cc"
