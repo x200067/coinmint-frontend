@@ -1,6 +1,28 @@
-const GRAPHQL_ENDPOINT = 'https://你的域名/graphql';
+// main.js
 
-// 拉文章列表
+// 直接写死你的 GraphQL 端点（注意要用 https）
+const GRAPHQL_ENDPOINT = 'https://api.coinmint.net/graphql';
+
+/**
+ * 通用的 GraphQL 请求函数
+ */
+async function graphqlRequest(query, variables = {}) {
+  const res = await fetch(GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, variables })
+  });
+  const json = await res.json();
+  if (json.errors) {
+    console.error('GraphQL errors:', json.errors);
+    throw new Error('GraphQL 查询失败，请检查控制台错误');
+  }
+  return json.data;
+}
+
+/**
+ * 拉取文章列表
+ */
 async function fetchPosts() {
   const query = `
     query {
@@ -12,16 +34,13 @@ async function fetchPosts() {
       }
     }
   `;
-  const res = await fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query })
-  });
-  const { data } = await res.json();
+  const data = await graphqlRequest(query);
   return data.posts.nodes;
 }
 
-// 拉单篇文章详情
+/**
+ * 根据 slug 拉取单篇文章详情
+ */
 async function fetchPostBySlug(slug) {
   const query = `
     query($slug: String!) {
@@ -31,16 +50,13 @@ async function fetchPostBySlug(slug) {
       }
     }
   `;
-  const res = await fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, variables: { slug } })
-  });
-  const { data } = await res.json();
+  const data = await graphqlRequest(query, { slug });
   return data.postBy;
 }
 
-// 渲染列表视图
+/**
+ * 渲染文章列表到 #post-list
+ */
 async function renderPostList() {
   const listEl = document.getElementById('post-list');
   listEl.innerHTML = ''; 
@@ -53,10 +69,13 @@ async function renderPostList() {
     li.appendChild(a);
     listEl.appendChild(li);
   });
+  // 滚到博客区块
   document.getElementById('blog').scrollIntoView();
 }
 
-// 渲染详情视图
+/**
+ * 渲染单篇文章详情到 #post-detail
+ */
 async function renderPostDetail(slug) {
   const titleEl = document.getElementById('post-title');
   const contentEl = document.getElementById('post-content');
@@ -66,7 +85,9 @@ async function renderPostDetail(slug) {
   document.getElementById('post-detail').style.display = '';
 }
 
-// 路由控制
+/**
+ * 路由控制：根据 location.hash 切列表/详情
+ */
 function handleRouting() {
   const slug = location.hash.slice(1);
   const listView = document.getElementById('post-list');
@@ -82,10 +103,15 @@ function handleRouting() {
   }
 }
 
-// 绑定返回按钮
+/**
+ * 入口：页面加载后绑定事件并触发一次路由
+ */
 document.addEventListener('DOMContentLoaded', () => {
+  // “← 返回列表”按钮
   document.getElementById('back-button')
           .addEventListener('click', () => location.hash = '');
+  // 监听 hash 变化
   window.addEventListener('hashchange', handleRouting);
+  // 初始路由
   handleRouting();
 });
