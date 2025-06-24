@@ -1,6 +1,9 @@
 // main.js
 
-// 直接写死你的 GraphQL 端点（注意要用 https）
+// 用于确认脚本已加载
+console.log('✅ main.js 已加载');
+
+// 直接写死你的 GraphQL 接口（注意要用 https）  
 const GRAPHQL_ENDPOINT = 'https://api.coinmint.net/graphql';
 
 /**
@@ -14,7 +17,7 @@ async function graphqlRequest(query, variables = {}) {
   });
   const json = await res.json();
   if (json.errors) {
-    console.error('GraphQL errors:', json.errors);
+    console.error('🔥 GraphQL errors:', json.errors);
     throw new Error('GraphQL 查询失败，请检查控制台错误');
   }
   return json.data;
@@ -59,7 +62,7 @@ async function fetchPostBySlug(slug) {
  */
 async function renderPostList() {
   const listEl = document.getElementById('post-list');
-  listEl.innerHTML = ''; 
+  listEl.innerHTML = '';
   const posts = await fetchPosts();
   posts.forEach(post => {
     const li = document.createElement('li');
@@ -69,7 +72,7 @@ async function renderPostList() {
     li.appendChild(a);
     listEl.appendChild(li);
   });
-  // 滚到博客区块
+  // 滚到博客区域
   document.getElementById('blog').scrollIntoView();
 }
 
@@ -86,7 +89,7 @@ async function renderPostDetail(slug) {
 }
 
 /**
- * 路由控制：根据 location.hash 切列表/详情
+ * 路由控制：根据 location.hash 切换列表/详情
  */
 function handleRouting() {
   const slug = location.hash.slice(1);
@@ -109,7 +112,7 @@ function handleRouting() {
 document.addEventListener('DOMContentLoaded', () => {
   // “← 返回列表”按钮
   document.getElementById('back-button')
-          .addEventListener('click', () => location.hash = '');
+          .addEventListener('click', () => { location.hash = ''; });
   // 监听 hash 变化
   window.addEventListener('hashchange', handleRouting);
   // 初始路由
