@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+bb.coinmint.cc	TRUE	/	FALSE	1999999999	lg	cn
+bb.coinmint.cc	TRUE	/	FALSE	1999999999	PbootSystem	7cq469amjluq75ffgeea7iubb7
+
