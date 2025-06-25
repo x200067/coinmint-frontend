@@ -1,6 +1,2 @@
 [build]
-  # 指向你想发布的那个文件夹
-  publish = "bb.coinmint.cc"
-
-# （如果有 Netlify Functions，就在这里指定；没有就删掉下一行）
-# functions = "bb.coinmint.cc/netlify/functions"
+  publish = "."
