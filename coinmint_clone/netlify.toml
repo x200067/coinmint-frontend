@@ -1,3 +1,5 @@
 [build]
-  # 指定你真正要发布的子目录
+  # 这里填写你静态站点的目录
   publish = "bb.coinmint.cc"
+  # 如果你有函数，也可以在这里指定：
+  # functions = "bb.coinmint.cc/netlify/functions"
