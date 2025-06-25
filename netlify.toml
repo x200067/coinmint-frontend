@@ -1,6 +1,8 @@
 [build]
-  # 指向你想发布的那个文件夹
-  publish = "bb.coinmint.cc"
+  # 先切进 coinmint_clone
+  base    = "coinmint_clone"
+  # 再把当前目录（即 coinmint_clone）的文件发布
+  publish = "."
 
-# （如果有 Netlify Functions，就在这里指定；没有就删掉下一行）
-# functions = "bb.coinmint.cc/netlify/functions"
+[build.environment]
+  GRAPHQL_ENDPOINT = "https://api.coinmint.net/graphql"
