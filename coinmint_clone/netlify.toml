@@ -1,5 +1,6 @@
 [build]
-# 发布目录：相对于仓库根的路径
-publish = "bb.coinmint.cc"
-# 由于你这里没有真正的「构建命令」，留空即可
-command = ""
+  # 指向你想发布的那个文件夹
+  publish = "bb.coinmint.cc"
+
+# （如果有 Netlify Functions，就在这里指定；没有就删掉下一行）
+# functions = "bb.coinmint.cc/netlify/functions"
