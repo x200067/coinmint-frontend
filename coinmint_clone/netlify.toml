@@ -1,5 +1,6 @@
 [build]
-  # 这里填写你静态站点的目录
-  publish = "bb.coinmint.cc"
-  # 如果你有函数，也可以在这里指定：
-  # functions = "bb.coinmint.cc/netlify/functions"
+# publish 对应你构建输出的静态文件夹
+publish = "bb.coinmint.cc"
+# 如果你有 Netlify 函数，再加：
+# functions = "bb.coinmint.cc/netlify/functions"
+
