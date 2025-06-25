@@ -1,8 +1,5 @@
 [build]
-  # 不执行任何命令
-  command = ""
-  # 你的静态站点目录（相对仓库根目录）
-  base    = "bb.coinmint.cc"
-  publish = "bb.coinmint.cc"
-  # 如果有函数的话再加这一行：
-  # functions = "bb.coinmint.cc/netlify/functions"
+# 发布目录：相对于仓库根的路径
+publish = "bb.coinmint.cc"
+# 由于你这里没有真正的「构建命令」，留空即可
+command = ""
