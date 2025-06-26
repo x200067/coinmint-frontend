@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main  # 你的仓库主分支（此处是 main，和界面一致）
+
+media_folder: "static/images/uploads"  # 图片存储路径
+public_folder: "/images/uploads"       # 图片访问路径
+
+collections:
+  - name: "pages"
+    label: "页面"
+    files:
+      - file: "index.html"  # 先关联首页（示例，需根据实际文件改）
+        name: "home"
+        label: "首页"
+        fields:
+          - {label: "标题", name: "title", widget: "string"}
+          - {label: "内容", name: "content", widget: "markdown"}
