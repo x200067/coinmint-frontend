@@ -1,0 +1,7 @@
+[build]
+  publish = "bb.coinmint.cc"  # 告诉Netlify：部署这个目录里的文件
+  command = ""  # 静态站点无需构建命令
+
+# （如果不需要 GraphQL 配置，可删除下面的环境变量）
+[build.environment]
+GRAPHQL_ENDPOINT = "https://api.coinmint.net/graphql"

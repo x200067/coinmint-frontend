@@ -1,8 +1,0 @@
-[build]
-  # 告诉 Netlify “先切进 coinmint_clone 目录再去找静态站点”
-  base    = "coinmint_clone"
-  # 然后发布当前目录下所有静态文件
-  publish = "."
-
-[build.environment]
-  GRAPHQL_ENDPOINT = "https://api.coinmint.net/graphql"
