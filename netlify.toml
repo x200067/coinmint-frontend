@@ -1,8 +1,3 @@
-[build]
-  # 先切进 coinmint_clone
-  base    = "coinmint_clone"
-  # 再把当前目录（即 coinmint_clone）的文件发布
-  publish = "."
-
-[build.environment]
-  GRAPHQL_ENDPOINT = "https://api.coinmint.net/graphql"
+[build]  
+  publish = "coinmint_clone"  # 部署此目录  
+  command = ""  
